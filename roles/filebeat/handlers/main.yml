@@ -1,0 +1,11 @@
+---
+- name: restart filebeat redhat
+  service:
+    name: filebeat
+    state: restarted
+    enabled: yes
+
+- name: restart filebeat windows
+  win_service:
+    name: filebeat
+    state: restarted

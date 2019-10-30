@@ -1,0 +1,6 @@
+---
+- name: install filebeat redhat
+  hosts: all
+  roles:
+    - role: filebeat
+      os_type: redhat

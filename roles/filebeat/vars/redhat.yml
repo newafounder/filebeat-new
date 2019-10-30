@@ -1,0 +1,15 @@
+---
+  # default['filebeat']['input'] = node['filebeat']['redhat']['input'] ? node['filebeat']['redhat']['input'] : ''
+  # default['filebeat']['root_dir'] = '/etc'
+  # default['filebeat']['base_dir'] = "#{node['filebeat']['root_dir']}/filebeat"
+  # default['filebeat']['logging']['files']['path'] = '/var/log/filebeat'
+  # default['filebeat']['registry_path'] = '/var/lib/filebeat/registry'
+  # default['filebeat']['logging']['to_syslog'] = 'true'
+
+#filebeat_input: 
+
+filebeat_root_dir: "/etc"
+filebeat_base_dir: "{{ filebeat_root_dir }}/filebeat"
+filebeat_logging_files_path: "/var/log/filebeat"
+filebeat_registry_path: "/var/lib/filebeat/registry"
+filebeat_logging_to_syslog: "true"

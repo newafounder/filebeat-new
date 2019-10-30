@@ -1,0 +1,30 @@
+# windows default['filebeat']['zipfilename'] = "filebeat-#{node['filebeat']['version']}-#{node['platform']}.zip"
+# windows default['filebeat']['package']['hostname'] = 'xczzpe0010'
+# windows default['filebeat']['package']['port'] = '8081'
+# windows default['filebeat']['package']['repository'] = 'adms'
+# windows default['filebeat']['package']['compiled'] = "http://#{node['filebeat']['package']['hostname']}:#{node['filebeat']['package']['port']}/artifactory/#{node['filebeat']['package']['repository']}/#{node['filebeat']['zipfilename']}"
+
+filebeat_zipfilename: filebeat-{{ filebeat_version }}-windows.zip
+filebeat_package_hostname: 'xczzpe0010'
+filebeat_package_port: '8081'
+filebeat_package_repository: 'adms'
+filebeat_package_compiled: "http://{ filebeat_package_hostname }:{ filebeat_package_port }/artifactory/{ filebeat_package_repository }/{ filebeat_zipfilename }"
+
+
+filebeat_config_dir:
+filebeat_windows_executablename: 'filebeat.exe'
+# filebeat_input: dynamically taken, need template for example
+filebeat_root_dir: 'C:\\Program Files'
+filebeat_base_dir: "{{ filebeat_root_dir }}\\filebeat"
+filebeat_logging_files_path: "{{ filebeat_base_dir }}\\Logs"
+filebeat_registry_path: "{{ filebeat_base_dir }}\\registry"
+filebeat_logging_to_eventlog: 'true'
+
+# when 'windows'
+#   default['filebeat']['windows']['executablename'] = 'filebeat.exe'
+#   default['filebeat']['input'] = node['filebeat']['windows']['input'] ? node['filebeat']['windows']['input'] : ''
+#   default['filebeat']['root_dir'] = 'C:\\Program Files'
+#   default['filebeat']['base_dir'] = "#{node['filebeat']['root_dir']}\\filebeat"
+#   default['filebeat']['logging']['files']['path'] = "#{node['filebeat']['base_dir']}\\Logs"
+#   default['filebeat']['registry_path'] = "#{node['filebeat']['base_dir']}\\registry"
+#   default['filebeat']['logging']['to_eventlog'] = 'true'

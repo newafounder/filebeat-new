@@ -1,0 +1,43 @@
+---
+# default['filebeat']['version'] = '6.5.4'
+# windows default['filebeat']['zipfilename'] = "filebeat-#{node['filebeat']['version']}-#{node['platform']}.zip"
+# windows default['filebeat']['package']['hostname'] = 'xczzpe0010'
+# windows default['filebeat']['package']['port'] = '8081'
+# windows default['filebeat']['package']['repository'] = 'adms'
+# windows default['filebeat']['package']['compiled'] = "http://#{node['filebeat']['package']['hostname']}:#{node['filebeat']['package']['port']}/artifactory/#{node['filebeat']['package']['repository']}/#{node['filebeat']['zipfilename']}"
+# default['filebeat']['servicename'] = 'filebeat'
+# default['filebeat']['tags'] = ''
+# default['filebeat']['logstash']['host']['host1']['hostname'] = 'logstash1'
+# default['filebeat']['logstash']['host']['host1']['port'] = '5144'
+# default['filebeat']['logstash']['host']['host2']['hostname'] = ''
+# default['filebeat']['logstash']['host']['host2']['port'] = ''
+# default['filebeat']['logstash']['host']['host3']['hostname'] = ''
+# default['filebeat']['logstash']['host']['host3']['port'] = ''
+# default['filebeat']['logstash']['host']['host4']['hostname'] = ''
+# default['filebeat']['logstash']['host']['host4']['port'] = ''
+# logstash_hostname_and_port_combos = []
+# logstash_hostname_and_port_combos.push([ node['filebeat']['logstash']['host']['host1']['hostname'], node['filebeat']['logstash']['host']['host1']['port'] ].reject(&:empty?).join(':'))
+# logstash_hostname_and_port_combos.push([ node['filebeat']['logstash']['host']['host2']['hostname'], node['filebeat']['logstash']['host']['host2']['port'] ].reject(&:empty?).join(':'))
+# logstash_hostname_and_port_combos.push([ node['filebeat']['logstash']['host']['host3']['hostname'], node['filebeat']['logstash']['host']['host3']['port'] ].reject(&:empty?).join(':'))
+# logstash_hostname_and_port_combos.push([ node['filebeat']['logstash']['host']['host4']['hostname'], node['filebeat']['logstash']['host']['host4']['port'] ].reject(&:empty?).join(':'))
+# default['filebeat']['logstash']['hosts'] = logstash_hostname_and_port_combos.reject(&:empty?).map { |item| "'" + item + "'" }.join(', ')
+# default['filebeat']['logstash']['index'] = 'filebeat'
+# default['filebeat']['logstash']['loadbalance'] = ''
+# default['filebeat']['logging']['files']['keepfiles'] = '7'
+# default['filebeat']['logging']['files']['rotateeverybytes'] = '10485760'
+# default['filebeat']['logging']['metrics']['enabled'] = 'true'
+# default['filebeat']['logging']['metrics']['period'] = '5m'
+# default['filebeat']['logging']['to_files'] = 'false'
+# default['filebeat']['logging']['level'] = 'info'
+
+filebeat_servicename: 'filebeat'
+filebeat_output_logstash_enabled: 'true'
+filebeat_logstash_host_host1_hostname: 'logstash1'
+filebeat_logstash_host_host1_port: '5144'
+filebeat_logstash_index: 'filebeat'
+filebeat_logging_files_keepfiles: '7'
+filebeat_logging_files_rotateeverybytes: '10485760'
+filebeat_logging_metrics_enabled: 'true'
+filebeat_logging_metrics_period: '5m'
+filebeat_logging_to_files: 'false'
+filebeat_logging_level: 'info'

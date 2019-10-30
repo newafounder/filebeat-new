@@ -1,0 +1,7 @@
+---
+- name: initialize OS specific vars
+  include_vars: "{{ os_type }}.yml"
+  tags: always
+
+- include_tasks: "setup-{{ ansible_os_family }}.yml"
+

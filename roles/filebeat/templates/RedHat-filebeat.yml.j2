@@ -1,0 +1,28 @@
+filebeat:
+  config:
+    inputs:
+      enabled: true
+      path: conf.d/input_*.yml
+
+output:
+
+{% if filebeat_output_logstash_enabled %}
+  logstash:
+    hosts: {{ filebeat_logstash_host_host1_hostname }}:{{ filebeat_logstash_host_host1_port }}
+    index: {{ filebeat_logstash_index }}
+
+{% if filebeat_enable_logging %}
+logging:
+  level: {{ filebeat_logging_level }}
+
+  to_files: {{ filebeat_logging_to_files }}
+
+  to_syslog: {{ filebeat_logging_to_syslog }}
+
+  files:
+    path: {{ filebeat_logging_files_path }}
+    name: {{ filebeat_log_filename }}
+    keepfiles: {{ filebeat_logging_files_keepfiles }}
+  {% endif %}
+
+{% endif %}

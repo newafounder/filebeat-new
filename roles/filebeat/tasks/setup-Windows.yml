@@ -1,0 +1,32 @@
+---
+
+- name: ensure filebeat is installed
+  win_unzip:
+    
+  tags:
+    - windows
+
+- name: ensure {{filebeat_config_dir}} exists
+  win_file: path={{filebeat_config_dir}} state=directory
+  tags:
+    - windows
+
+- name: ensure main filebeat.yml is generated
+  win_template:
+    src: filebeat.yml.j2
+    dest: "{{ filebeat_base_dir }}/filebeat.yml"
+  notify: restart filebeat windows
+  tags:
+    - windows
+
+- name: ensure filebeat_log.yml is generated
+  win_copy:
+    src: filebeat_log.yml
+    dest: "{{filebeat_config_dir}}/filebeat_log.yml"
+  notify: filebeat restart
+
+- name: ensure filebeat service is started
+  win_service: 
+    name: filebeat 
+    start_mode: auto 
+    state: started

@@ -1,0 +1,40 @@
+---
+- name: elastic repo (red-hat-based system)
+  copy:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/elasticsearch.repo
+  become: yes
+  when: ansible_os_family == "RedHat"
+  tags:
+    - redhat
+
+- name: filebeat config dirs
+  file:
+    path:  "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode:  '0755'
+  with_items:
+  - "{{ filebeat_base_dir }}"
+  - "{{ filebeat_base_dir }}/conf.d"
+  tags:
+    - redhat
+
+- name: filebeat main config
+  template:
+    src: "RedHat-filebeat.yml.j2"
+    dest: "/etc/filebeat/filebeat.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart filebeat redhat
+  tags:
+    - redhat
+
+- name: filebeat package (red hat)
+  command: "yum install -y filebeat-{{ filebeat_version }}"
+  notify: restart filebeat
+  when: ansible_os_family == "RedHat"
+  tags:
+    - redhat
